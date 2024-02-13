@@ -1,0 +1,99 @@
+```markdown
+# Getting Started with Rust
+
+## Introduction
+
+Let’s start your Rust journey! In this chapter, we’ll discuss:
+
+- Installing Rust on Linux, macOS, and Windows
+- Writing a program that prints Hello, world!
+- Using cargo, Rust’s package manager and build system
+
+## Installation
+
+The first step is to install Rust. We’ll download Rust through rustup, a command line tool for managing Rust versions and associated tools. The following steps install the latest stable version of the Rust compiler. 
+
+### Installing rustup on Linux or macOS
+
+```bash
+$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+```
+
+### Installing rustup on Windows
+
+On Windows, go to https://www.rust-lang.org/tools/install and follow the instructions for installing Rust. 
+
+### Troubleshooting
+
+To check whether you have Rust installed correctly, open a shell and enter this line:
+
+```bash
+$ rustc --version
+```
+
+### Updating and Uninstalling
+
+Once Rust is installed via rustup, updating to a newly released version is easy. To uninstall Rust and rustup, run the following uninstall script from your shell:
+
+```bash
+$ rustup self uninstall
+```
+
+### Local Documentation
+
+The installation of Rust also includes a local copy of the documentation so that you can read it offline. Run `rustup doc` to open the local documentation in your browser.
+
+## Hello, World!
+
+Now that you’ve installed Rust, it’s time to write your first Rust program. Let’s write a program that prints the text Hello, world! to the screen.
+
+## Anatomy of a Rust Program
+
+Let’s review this “Hello, world!” program in detail. Here’s the first piece of the puzzle:
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+## Compiling and Running Are Separate Steps
+
+Before running a Rust program, you must compile it using the Rust compiler by entering the rustc command and passing it the name of your source file.
+
+## Hello, Cargo!
+
+Cargo is Rust’s build system and package manager. Most Rustaceans use this tool to manage their Rust projects because Cargo handles a lot of tasks for you, such as building your code, downloading the libraries your code depends on, and building those libraries.
+
+### Creating a Project with Cargo
+
+Let’s create a new project using Cargo and look at how it differs from our original “Hello, world!” project. 
+
+### Building and Running a Cargo Project
+
+Now let’s look at what’s different when we build and run the “Hello, world!” program with Cargo! From your hello_cargo directory, build your project by entering the following command:
+
+```bash
+$ cargo build
+```
+
+### Building for Release
+
+When your project is finally ready for release, you can use `cargo build --release` to compile it with optimizations.
+
+### Cargo as Convention
+
+With simple projects, Cargo doesn’t provide a lot of value over just using rustc, but it will prove its worth as your programs become more intricate.
+
+## Summary
+
+You’re already off to a great start on your Rust journey! In this chapter, you’ve learned how to:
+
+- Install the latest stable version of Rust using rustup
+- Update to a newer Rust version
+- Open locally installed documentation
+- Write and run a “Hello, world!” program using rustc directly
+- Create and run a new project using the conventions of Cargo
+
+This is a great time to build a more substantial program to get used to reading and writing Rust code. So, in Chapter 2, we’ll build a guessing game program. If you would rather start by learning how common programming concepts work in Rust, see Chapter 3 and then return to Chapter 2.
+```

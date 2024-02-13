@@ -1,0 +1,22 @@
+```markdown
+# The Rust Programming Language
+
+## Introduction
+Welcome to The Rust Programming Language, an introductory book about Rust. Rust offers faster, more reliable software by balancing high-level ergonomics and low-level control.
+
+## Who Rust Is For
+- Teams of Developers: Productive collaboration, modern developer tools
+- Students: Learning systems concepts
+- Companies: Production use in various domains
+- Open Source Developers: Contributing to the Rust language and ecosystem
+- People Who Value Speed and Stability: Fast, stable, and safe programming
+
+## Who This Book Is For
+This book is for those with coding experience in any programming language and aims to be accessible to a wide audience.
+
+## How to Use This Book
+The book assumes sequential reading and contains both concept and project chapters. It covers installation, basic concepts, ownership, modules, error-handling, generics, testing, concurrency, and advanced topics.
+
+## Source Code
+The source files for this book can be found on [GitHub](https://github.com/rust-lang/book).
+```
