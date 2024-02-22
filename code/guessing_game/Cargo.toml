@@ -8,3 +8,8 @@ edition = "2021"
 [dependencies]
 # We need to add the functionality of a random rumber generator
 rand = "0.8.5"
+# Cargo automatically handles dependency resolution and compilation.
+# When a dependency is specified, Cargo fetches the latest compatible version from Crates.io,
+# along with its dependencies. This ensures all projects use compatible and up-to-date crate
+# versions. Running `cargo build` compiles both your project and its dependencies. Subsequent
+# builds are skipped if no changes are detected, optimizing the development process.
