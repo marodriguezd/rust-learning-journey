@@ -16,7 +16,7 @@ fn main() {
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
     // Display the secret number in the console (normally you wouldn't do this in a real game).
-    println!("The secret number is: {secret_number}");
+    // println!("The secret number is: {secret_number}");
 
     // Start an infinite loop to allow multiple guesses.
     loop {
