@@ -1,4 +1,3 @@
-```markdown
 # My Rust Learning Repository
 
 This repository is meant for my personal learning of the Rust programming language using the official documentation and other learning resources. I will be uploading my code, notes, and any other advancements as I progress through my learning journey.
@@ -24,4 +23,3 @@ I will regularly update this README and the repository with my progress, code, a
 ## Contributions
 
 While this repository is primarily for my personal learning, I welcome constructive feedback, suggestions, and contributions from the community.
-```
