@@ -70,3 +70,29 @@ fn function2_v2() -> IoResult<()> {
 }
 
 // Re-exporting Names with pub use
+
+/*
+ * Combining pub and use re-exports a name, making it available for external code to use as if it
+ * were defined in their scope.
+ */
+
+mod front_of_house_v3 {
+    pub mod hosting_v2 {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub use crate::front_of_house_v3::hosting_v2;
+
+pub fn eat_at_restaurant_v3() {
+    hosting_v2::add_to_waitlist();
+}
+
+/*
+ * Before this change, external code had to use
+ * restaurant::front_of_house::hosting::add_to_waitlist().
+ * Now, external code can use restaurant::hosting::add_to_waitlist() due to re-exporting with
+ * pub use.
+ * Re-exporting helps align internal structure with external usage, making the library easier
+ * to navigate and use.
+ */
