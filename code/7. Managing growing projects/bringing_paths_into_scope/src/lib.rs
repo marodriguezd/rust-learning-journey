@@ -99,5 +99,6 @@ pub fn eat_at_restaurant_v3() {
 
 // Using external packages: it's only theory.
 
-// Using Nested Paths to Clean Up Large use Lists
+// Using Nested Paths to Clean Up Large use Lists: it's only theory.
 
+// The glob operator: it's only theory.
