@@ -96,3 +96,8 @@ pub fn eat_at_restaurant_v3() {
  * Re-exporting helps align internal structure with external usage, making the library easier
  * to navigate and use.
  */
+
+// Using external packages: it's only theory.
+
+// Using Nested Paths to Clean Up Large use Lists
+
