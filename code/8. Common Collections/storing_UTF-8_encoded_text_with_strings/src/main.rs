@@ -1,5 +1,7 @@
 fn main() {
     creating_a_new_string();
+
+    updating_a_string();
 }
 
 fn creating_a_new_string() {
@@ -47,4 +49,20 @@ fn creating_a_new_string() {
     let hello = String::from("Olá");
     let hello = String::from("Здравствуйте");
     let hello = String::from("Hola");
+}
+
+fn updating_a_string() {
+    // Appending to a String with push_str and push
+    {
+        // We can grow a String by using the push_str
+        // method to append a string slice.
+        let mut s = String::from("foo");
+        s.push_str("bar");
+
+        // After these two lines, s will contain "foobar".
+        // The push_str method takes a string slice because we
+        // don’t necessarily want to take ownership of the parameter.
+    }
+
+    // Resume continuing: For example, in the code in Listing 8-16, we want to be able to use s2 after appending its contents to s1.
 }
