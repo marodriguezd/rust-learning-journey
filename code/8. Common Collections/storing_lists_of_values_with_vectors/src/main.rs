@@ -62,5 +62,32 @@ fn iterating_over_vector_values() {
 }
 
 fn using_enums_to_store_multiple_types() {
+    // This is an example of a SpreadsheetCell enum that can store
+    // multiple types (i32, f64, String).
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
 
+    // This is an example of how to use the SpreadsheetCell enum
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
+
+    // Rust requires knowing vector types at compile time for memory
+    // allocation.
+    // Enums ensure type safety and handling all cases with match
+    // expressions.
+
+    // An added example of how to iterate over the enum vector
+    for cell in &row {  // You can have infinite cells(enums)
+        match cell {
+            SpreadsheetCell::Int(i) => println!("Int: {}", i),
+            SpreadsheetCell::Float(f) => println!("Float: {}", f),
+            SpreadsheetCell::Text(s) => println!("String: {}", s),
+        }
+    }
 }
