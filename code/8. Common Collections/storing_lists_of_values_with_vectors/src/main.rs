@@ -8,6 +8,8 @@ fn main() {
     iterating_over_vector_values();
 
     using_enums_to_store_multiple_types();
+
+    dropping_a_vector_drops_its_elements();
 }
 
 fn creating_new_vector() {
@@ -90,4 +92,13 @@ fn using_enums_to_store_multiple_types() {
             SpreadsheetCell::Text(s) => println!("String: {}", s),
         }
     }
+}
+
+fn dropping_a_vector_drops_its_elements() {
+    // As any other struct, is freed out of scope
+    {
+        let v = vec![1, 2, 3, 4, 5];
+
+        // do stuff with v
+    }  // <- v goes out of scope and is freed here
 }
