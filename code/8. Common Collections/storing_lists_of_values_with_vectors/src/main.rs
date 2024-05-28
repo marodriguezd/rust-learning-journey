@@ -4,6 +4,10 @@ fn main() {
     updating_a_vector();
 
     reading_elements_of_vectors();
+
+    iterating_over_vector_values();
+
+    using_enums_to_store_multiple_types();
 }
 
 fn creating_new_vector() {
@@ -41,4 +45,22 @@ fn reading_elements_of_vectors() {
         Some(third) => println!("The third element is {third}"),
         None => println!("There is no third element."),
     }
+}
+
+fn iterating_over_vector_values() {
+    let v = vec![100, 32, 57];
+    for i in &v {
+        println!("{i}");
+    }
+
+    // Use the * dereference operator to modify the value referred by
+    // a mutable reference.
+    let mut v = vec![100, 32, 57];
+    for i in &mut v {
+        *i += 50;
+    }
+}
+
+fn using_enums_to_store_multiple_types() {
+
 }
