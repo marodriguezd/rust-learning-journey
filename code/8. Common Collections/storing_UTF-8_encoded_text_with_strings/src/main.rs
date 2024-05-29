@@ -2,6 +2,8 @@ fn main() {
     creating_a_new_string();
 
     updating_a_string();
+
+    indexing_into_strings();
 }
 
 fn creating_a_new_string() {
@@ -114,4 +116,21 @@ fn updating_a_string() {
         // It’s easier to read and doesn’t take ownership of its
         // parameters.
     }
+}
+
+fn indexing_into_strings() {
+    // Rust strings don’t support indexing.
+    // A String is a wrapper over a Vec<u8>.
+
+    // Internal Representation
+    fn utf8_string_example() {
+        // `String` is a wrapper over `Vec<u8>`, storing UTF-8 encoded data.
+        let hello1 = String::from("Hola"); // 4 bytes
+        let hello2 = String::from("Здравствуйте"); // 24 bytes
+        // Accessing `hello2[0]` would be invalid as it returns a byte, not a character.
+        // ASCII = 1 byte for word, UNICODE = 2 bytes for word.
+    }
+
+    // Bytes and Scalar Values and Grapheme Clusters! Oh My!
+
 }
