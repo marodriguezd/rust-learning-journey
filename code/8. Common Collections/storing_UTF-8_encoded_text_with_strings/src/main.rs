@@ -64,5 +64,54 @@ fn updating_a_string() {
         // don’t necessarily want to take ownership of the parameter.
     }
 
-    // Resume continuing: For example, in the code in Listing 8-16, we want to be able to use s2 after appending its contents to s1.
+    {  // How to maintain "s2" after appending its contents
+        let mut s1 = String::from("foo");
+        let s2 = "bar";  // Using a variable to allocate this can retain it.
+        s1.push_str(s2);
+        println!("s2 is {s2}");
+
+        // If the push_str method took ownership of s2, we wouldn’t
+        // be able to print its value on the last line. However, this
+        // code works as we’d expect!
+    }
+
+    {  // The push method takes a single character and adds it to the
+       // String.
+        let mut s = String::from("lo");
+        s.push('l');
+    }
+
+    // Concatenation with the + Operator or the format! Macro
+
+    {  // Combining two existing strings with "+" operator.
+        let s1 = String::from("Hello, ");
+        let s2 = String::from("world!");
+        let s3 = s1 + &s2;  // s1 has given up it ownership.
+
+        // `s2` has an &, meaning we're adding a reference of the
+        // second string to the first string.
+        // This is because of the `s` parameter in the `add` function:
+        // we can only add a `&str` to a `String`; we can't add two
+        // `String` values together.
+
+        // If we need to concatenate multiple strings, the behavior
+        // of the + operator gets unwieldy:
+        let s1 = String::from("tic");
+        let s2 = String::from("tac");
+        let s3 = String::from("toe");
+
+        let s = s1 + "-" + &s2 + "-" + &s3;
+
+        // It’s difficult to see what’s going on.
+        // We can instead use the format! macro:
+        let s1 = String::from("tic");
+        // s2 and s3 still alive
+
+        let s = format!("{s1}-{s2}-{s3}");
+
+        // The `format!` macro creates a `String` like `println!`,
+        // but returns it instead of printing.
+        // It’s easier to read and doesn’t take ownership of its
+        // parameters.
+    }
 }
