@@ -1,0 +1,140 @@
+# Storing Keys with Associated Values in Hash Maps
+
+The last of our common collections is the hash map. The type `HashMap<K, V>` stores a mapping of keys of type `K` to values of type `V` using a hashing function. Many programming languages support this data structure, often under names like hash, map, object, hash table, dictionary, or associative array.
+
+Hash maps are useful for looking up data using a key rather than an index. For example, in a game, you could track each team’s score in a hash map where each key is a team’s name and the values are each team’s score. Given a team name, you can retrieve its score.
+
+## Creating a New Hash Map
+
+One way to create an empty hash map is using `new` and adding elements with `insert`.
+
+```rust
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from("Blue"), 10);
+scores.insert(String::from("Yellow"), 50);
+```
+
+Note: We need to first use the `HashMap` from the collections portion of the standard library. Hash maps are less frequently used, so they’re not included in the prelude. Like vectors, hash maps store their data on the heap and are homogeneous.
+
+## Accessing Values in a Hash Map
+
+You can get a value out of the hash map by providing its key to the `get` method.
+
+```rust
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from("Blue"), 10);
+scores.insert(String::from("Yellow"), 50);
+
+let team_name = String::from("Blue");
+let score = scores.get(&team_name).copied().unwrap_or(0);
+```
+
+`score` will have the value associated with the Blue team, which is 10. The `get` method returns an `Option<&V>`. This program handles the `Option` by calling `copied` to get an `Option<i32>`, then `unwrap_or` to set `score` to zero if the key doesn’t exist.
+
+You can iterate over each key/value pair in a hash map using a `for` loop.
+
+```rust
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from("Blue"), 10);
+scores.insert(String::from("Yellow"), 50);
+
+for (key, value) in &scores {
+    println!("{key}: {value}");
+}
+```
+
+This will print each pair in an arbitrary order.
+
+## Hash Maps and Ownership
+
+For types that implement the `Copy` trait, like `i32`, values are copied into the hash map. For owned values like `String`, values will be moved and the hash map will be the owner of those values.
+
+```rust
+use std::collections::HashMap;
+
+let field_name = String::from("Favorite color");
+let field_value = String::from("Blue");
+
+let mut map = HashMap::new();
+map.insert(field_name, field_value);
+// field_name and field_value are invalid at this point
+```
+
+If we insert references to values into the hash map, the values won’t be moved into the hash map, but they must be valid as long as the hash map is valid.
+
+## Updating a Hash Map
+
+You can change the data in a hash map by replacing, adding, or combining values.
+
+### Overwriting a Value
+
+Inserting a key with a different value will replace the old value.
+
+```rust
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from("Blue"), 10);
+scores.insert(String::from("Blue"), 25);
+
+println!("{:?}", scores); // Prints {"Blue": 25}
+```
+
+### Adding a Key and Value Only If a Key Isn’t Present
+
+Use the `entry` API to check if a key exists and only insert if it doesn’t.
+
+```rust
+use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+scores.insert(String::from("Blue"), 10);
+
+scores.entry(String::from("Yellow")).or_insert(50);
+scores.entry(String::from("Blue")).or_insert(50);
+
+println!("{:?}", scores); // Prints {"Yellow": 50, "Blue": 10}
+```
+
+### Updating a Value Based on the Old Value
+
+Update a value based on the old value, such as counting word occurrences.
+
+```rust
+use std::collections::HashMap;
+
+let text = "hello world wonderful world";
+
+let mut map = HashMap::new();
+
+for word in text.split_whitespace() {
+    let count = map.entry(word).or_insert(0);
+    *count += 1;
+}
+
+println!("{:?}", map); // Prints {"world": 2, "hello": 1, "wonderful": 1}
+```
+
+## Hashing Functions
+
+By default, `HashMap` uses a hashing function called SipHash. This provides resistance to Denial of Service (DoS) attacks. If performance is an issue, you can switch to a different hasher that implements the `BuildHasher` trait.
+
+## Summary
+
+Vectors, strings, and hash maps provide a large amount of functionality for storing, accessing, and modifying data. Here are some exercises to practice:
+
+- Given a list of integers, use a vector to return the median and mode of the list.
+- Convert strings to pig latin.
+- Using a hash map and vectors, create a text interface to add employee names to departments and retrieve lists of employees.
+
+Next, we’ll discuss error handling.
