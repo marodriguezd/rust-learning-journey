@@ -4,6 +4,10 @@ fn main() {
     updating_a_string();
 
     indexing_into_strings();
+
+    slicing_strings();
+
+    methods_for_iterating_over_strings();
 }
 
 fn creating_a_new_string() {
@@ -132,5 +136,30 @@ fn indexing_into_strings() {
     }
 
     // Bytes and Scalar Values and Grapheme Clusters! Oh My!
+    // More theory than anything
+}
 
+fn slicing_strings() {
+    // Rust provides checks for indexing into strings that can lead to confusion. When explicit
+    // index handling is needed and clarity about return types is required, Rust asks for
+    // specificity in terms of the operation performed on string slices.
+
+    // Rather than indexing using [] with a single number, you can use [] with a range to create a
+    // string slice containing particular bytes
+    let hello = "Здравствуйте";
+    let s = &hello[0..4];
+
+    // You should use ranges to create string slices with caution, because doing so can crash your
+    // program.
+}
+
+fn methods_for_iterating_over_strings() {
+    // When manipulating strings in Rust, it's crucial to differentiate between handling characters
+    // and byte sequences explicitly. Use `.chars()` for working with Unicode scalar values
+    // (characters), allowing for more precise operations at a character level within multibyte or
+    // wide-character strings. This distinction is key when dealing with diverse text data in Rust
+    // applications.
+    for c in "Зд".chars() {
+        println!("{c}");
+    }
 }
