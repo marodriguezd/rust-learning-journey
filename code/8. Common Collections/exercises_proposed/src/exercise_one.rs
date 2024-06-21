@@ -5,7 +5,14 @@ pub fn main() {
     calculations(numbers);
 }
 
-// Main function to perform calculations and display results
+/// Main function to perform calculations and display results
+///
+/// # Arguments
+///
+/// * 'vec' - A vector of integers to be analyzed.
+///
+/// This function sorts the vector, calculates the median and mode, and
+/// displays the results.
 fn calculations(mut vec: Vec<i32>) {
     // Sort the vector in ascending order
     vec.sort();
@@ -20,7 +27,15 @@ fn calculations(mut vec: Vec<i32>) {
     display_results(median, mode);
 }
 
-// Function to calculate the median
+/// Function to calculate the median
+///
+/// # Arguments
+///
+/// 'vec' - A reference to a sorted vector of integers.
+///
+/// # Returns
+///
+/// * The median value of the vector.
 fn calculate_median(vec: &Vec<i32>) -> i32 {
     // Calculate the middle index
     let mid_index = vec.len() / 2;
@@ -40,7 +55,15 @@ fn calculate_median(vec: &Vec<i32>) -> i32 {
     median
 }
 
-// Function to calculate the mode
+/// Function to calculate the mode
+///
+/// # Arguments
+///
+/// * 'vec' - A reference to a vector of integers.
+///
+/// # Returns
+///
+/// * The mode value of the vector, i.e., the value that occurs most frequently.
 fn calculate_mode(vec: &Vec<i32>) -> i32 {
     let mut mode_map = HashMap::new();
 
@@ -66,7 +89,14 @@ fn calculate_mode(vec: &Vec<i32>) -> i32 {
     mode
 }
 
-// Function to display the results
+/// Function to display the results
+///
+/// # Arguments
+///
+/// * 'median' - The median value of the vector.
+/// * 'mode' - The mode value of the vector.
+///
+/// This function prints the median and mode to the console.
 fn display_results(median: i32, mode: i32) {
     println!("The median is: {median}, and the mode is: {mode}");
 }
