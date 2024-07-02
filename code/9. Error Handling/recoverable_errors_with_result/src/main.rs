@@ -3,7 +3,7 @@ use std::{fs, io};
 use std::io::{ErrorKind, Read};
 
 fn main() {
-    return_a_result_value_due_to_possible_fail(false);
+    /*return_a_result_value_due_to_possible_fail(false);
 
     matching_on_different_errors(false);
 
@@ -13,12 +13,12 @@ fn main() {
 
     propagating_errors(false);
 
-    a_shortcut_for_propagating_errors(false);
+    a_shortcut_for_propagating_errors(false);*/
 
     where_the_interrogation_operator_can_be_used(true);
 }
 
-fn return_a_result_value_due_to_possible_fail(execute: bool) {
+/*fn return_a_result_value_due_to_possible_fail(execute: bool) {
     if execute {
         let greeting_file_result = File::open("hello.txt");
 
@@ -114,10 +114,15 @@ fn a_shortcut_for_propagating_errors(execute: bool) {
         // this don't give the opportunity to explain the error handling.
         fs::read_to_string("hello.txt")
     }
-}
+}*/
 
 fn where_the_interrogation_operator_can_be_used(execute: bool) {
     if execute {
+        let greeting_file = File::open("hello.txt")?;
 
+        // Example of a function that finds the last character of the first line in the given text:
+        fn last_char_of_first_line(text: &str) -> Option<char> {
+            text.lines().next()?.chars().last()
+        }
     }
 }
