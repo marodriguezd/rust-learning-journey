@@ -23,5 +23,6 @@ fn main() {
         ),
     };
 
-    println!("New article available! {}", article.summarize());
+    // println!("New article available! {}", article.summarize());
+    // BROKEN IN LIB
 }

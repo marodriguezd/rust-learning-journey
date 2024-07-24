@@ -12,6 +12,7 @@ pub trait Summary {
     */
 
     // V2
+    /*
     /// Returns a summary of the content.
     ///
     /// This method has a default implementation that returns a generic summary string.
@@ -20,6 +21,25 @@ pub trait Summary {
     /// defined with this exact signature.
     fn summarize(&self) -> String {
         String::from("(Read more...)")
+    }
+    */
+
+    // V3
+    /// Returns the author of the content.
+    ///
+    /// Each type implementing this trait must provide its own custom implementation of this method.
+    /// The compiler ensures that any type with the `Summary` trait has the `summarize_author` method
+    /// defined with this exact signature.
+    fn summarize_author(&self) -> String;
+
+    /// Returns a summary of the content, including the author.
+    ///
+    /// This method has a default implementation that returns a summary string including the author.
+    /// Types implementing this trait can override this method to provide a custom summary.
+    /// The compiler ensures that any type with the `Summary` trait has the `summarize` method
+    /// defined with this exact signature.
+    fn summarize(&self) -> String {
+        format!("(Read more from {}...)", self.summarize_author())
     }
 }
 
@@ -52,7 +72,8 @@ impl Summary for NewsArticle {
 /// Even though we're no longer defining the summarize method on `NewsArticle` directly,
 /// we've provided a default implementation and specified that `NewsArticle` implements
 /// the `Summary` trait. As a result, we can still call the summarize method on an instance of `NewsArticle`.
-impl Summary for NewsArticle {}
+// impl Summary for NewsArticle {}
+// BROKEN DUE TO THE summarize_author IMPLEMENTATION
 
 /// A `Tweet` struct representing a tweet with a username, content, and metadata about replies and retweets.
 pub struct Tweet {
@@ -66,7 +87,15 @@ pub struct Tweet {
 ///
 /// The `summarize` method returns a string that summarizes the tweet using the username and content.
 impl Summary for Tweet {
+    // V1
+    /*
     fn summarize(&self) -> String {
         format!("{}: {}", self.username, self.content)
+    }
+     */
+
+    // V2
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.username)
     }
 }
