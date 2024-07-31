@@ -66,6 +66,64 @@ where
     println!("t: {}, u: {}", t, u);
     42
 }
+
+/// The `returns_summarizable` function returns a type that implements the `Summary` trait.
+/// In this case, it returns a `Tweet` instance.
+///
+/// # Returns
+///
+/// * A `Tweet` instance that implements the `Summary` trait.
+pub fn returns_summarizable() -> impl Summary {
+    Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+        ),
+        reply: false,
+        retweet: false,
+    }
+}
+
+/// The `Pair` struct is a generic type that holds two values of Type `T`.
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Pair<T> {
+    /// Creates a new instance of `Pair`.
+    ///
+    /// # Arguments
+    ///
+    /// * `x` - The first value of the pair.
+    /// * `y` - The second value of the pair.
+    ///
+    /// # Returns
+    ///
+    /// * A new instance of `Pair`.
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {
+    /// Compares and displays the larger member of the pair.
+    ///
+    /// This method is only available if `T` implements both `Display` and `PartialOrd`.
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
+}
+
+fn use_pair_example() {
+    let pair = Pair::new(5, 10);
+    pair.cmp_display();
+}
+
 fn main() {
     let tweet = Tweet{
         username: String::from("horse_ebooks"),
@@ -92,6 +150,13 @@ fn main() {
     // Use the notify functions to print the summary of the tweet
     notify(&tweet);
     notify_with_trait_bound(&tweet);
+
+    // Call the function that returns a type implementing the Summary trait
+    let summarizable = returns_summarizable();
+    println!("Returned summarizable: {}", summarizable.summarize());
+
+    // Call the function that uses Pair with conditional method implementation
+    use_pair_example();
 
     // println!("New article available! {}", article.summarize());
     // BROKEN IN LIB
